@@ -34,6 +34,7 @@ public class RegisterService {
         User user = new User();
         user.setUserName(userRegisterRequestDto.getUserName());
         user.setPassword(userRegisterRequestDto.getPassword());
+        user.setRoleId(2);
         user.setFirstName(userRegisterRequestDto.getFirstName());
         user.setLastName(userRegisterRequestDto.getLastName());
         user.setEmailId(userRegisterRequestDto.getEmailId());
