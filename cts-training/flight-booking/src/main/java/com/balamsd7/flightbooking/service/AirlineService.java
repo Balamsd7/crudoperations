@@ -29,6 +29,10 @@ public class AirlineService {
 
         ResponseDataDto responseDataDto = new ResponseDataDto();
         try {
+            if(airlineRepository.existsByAirlineName(airlineDto.getAirlineName())) {
+                responseDataDto.setMessage("Airline name is already taken!");
+                return responseDataDto;
+            }
             Airline airLine = toAirlineEntity(airlineDto);
             Airline savedAirline = airlineRepository.save(airLine);
             if (Objects.nonNull(savedAirline)) {

@@ -30,8 +30,8 @@ public class InventoryService {
     public ResponseDataDto createInventory(InventoryDto inventoryDto) {
         ResponseDataDto responseDataDto = new ResponseDataDto();
         try{
-            Inventory inventory = toInventoryEntity(inventoryDto);
 
+            Inventory inventory = toInventoryEntity(inventoryDto);
             Inventory savedInventory = inventoryRepository.save(inventory);
             if(Objects.nonNull(savedInventory)){
                 responseDataDto.setMessage(CommonConstants.SUCCESS);

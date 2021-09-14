@@ -33,6 +33,10 @@ public class FlightService {
 
         ResponseDataDto responseDataDto = new ResponseDataDto();
         try{
+            if(flightRepository.existsByFlightNumber(flightDto.getFlightNumber())) {
+                responseDataDto.setMessage("Flight Number is already in use!");
+                return responseDataDto;
+            }
             Flight flight = toFlightEntity(flightDto);
             Flight savedFlight = flightRepository.save(flight);
             if(Objects.nonNull(savedFlight)){
