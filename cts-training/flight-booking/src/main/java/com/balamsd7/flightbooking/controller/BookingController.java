@@ -3,6 +3,7 @@ package com.balamsd7.flightbooking.controller;
 import com.balamsd7.flightbooking.dto.BookingDto;
 import com.balamsd7.flightbooking.dto.ResponseDataDto;
 import com.balamsd7.flightbooking.service.BookingService;
+import com.balamsd7.flightbooking.utils.APIResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,24 +17,24 @@ public class BookingController {
 
     @PostMapping()
     public ResponseEntity<ResponseDataDto> createBooking(@RequestBody BookingDto bookingDto){
-        return ResponseEntity.ok(bookingService.createBooking(bookingDto));
+        return APIResponseBuilder.buildResponseFromDto(bookingService.createBooking(bookingDto));
     }
     @PostMapping("/update")
     public ResponseEntity<ResponseDataDto> updateBooking(@RequestBody BookingDto bookingDto){
-        return ResponseEntity.ok(bookingService.updateBooking(bookingDto));
+        return APIResponseBuilder.buildResponseFromDto(bookingService.updateBooking(bookingDto));
     }
 
     @GetMapping("/ticket/{pnr}")
     public ResponseEntity<ResponseDataDto> getBookedTicketByPnrNumber(@PathVariable("pnr") String pnrNumber){
-        return ResponseEntity.ok(bookingService.getBookedTicketByPnrNumber(pnrNumber));
+        return APIResponseBuilder.buildResponseFromDto(bookingService.getBookedTicketByPnrNumber(pnrNumber));
     }
 
     @GetMapping("/history/{emailId}")
     public ResponseEntity<ResponseDataDto> getBookedTicketByEmailId(@PathVariable("emailId") String emailId){
-        return ResponseEntity.ok(bookingService.getBookedTicketByEmailId(emailId));
+        return APIResponseBuilder.buildResponseFromDto(bookingService.getBookedTicketByEmailId(emailId));
     }
     @DeleteMapping("/cancel/{pnr}")
-    public ResponseEntity<Boolean> cancelTicketByPnrNumber(@PathVariable("pnr") String pnrNumber){
-        return ResponseEntity.ok(bookingService.cancelTicketByPnrNumber(pnrNumber));
+    public ResponseEntity<ResponseDataDto> cancelTicketByPnrNumber(@PathVariable("pnr") String pnrNumber){
+        return APIResponseBuilder.buildResponseFromDto(bookingService.cancelTicketByPnrNumber(pnrNumber));
     }
 }

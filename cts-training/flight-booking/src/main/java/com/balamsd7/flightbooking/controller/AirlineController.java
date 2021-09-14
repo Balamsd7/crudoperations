@@ -3,6 +3,7 @@ package com.balamsd7.flightbooking.controller;
 import com.balamsd7.flightbooking.dto.AirlineDto;
 import com.balamsd7.flightbooking.dto.ResponseDataDto;
 import com.balamsd7.flightbooking.service.AirlineService;
+import com.balamsd7.flightbooking.utils.APIResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,21 +17,21 @@ public class AirlineController {
 
     @PostMapping("/create")
     public ResponseEntity<ResponseDataDto> createAirline(@RequestBody AirlineDto airlineDto){
-        return ResponseEntity.ok(airlineService.createAirline(airlineDto));
+        return APIResponseBuilder.buildResponseFromDto(airlineService.createAirline(airlineDto));
     }
     @GetMapping("/getAllAirline")
     public ResponseEntity<ResponseDataDto> getAllAirline (){
-        return ResponseEntity.ok(airlineService.getAllAirline());
+        return APIResponseBuilder.buildResponseFromDto(airlineService.getAllAirline());
     }
 
     @GetMapping("/getAirlineById")
     public ResponseEntity<ResponseDataDto> getAirlineById (@RequestParam("id") int airlineId){
-        return ResponseEntity.ok(airlineService.getAirlineById(airlineId));
+        return APIResponseBuilder.buildResponseFromDto(airlineService.getAirlineById(airlineId));
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDataDto> deleteByAirlineId (@RequestParam("id") int airlineId){
-        return ResponseEntity.ok(airlineService.deleteByAirlineId(airlineId));
+        return APIResponseBuilder.buildResponseFromDto(airlineService.deleteByAirlineId(airlineId));
     }
 
 }

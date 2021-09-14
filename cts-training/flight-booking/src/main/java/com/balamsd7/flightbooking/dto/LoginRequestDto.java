@@ -2,7 +2,7 @@ package com.balamsd7.flightbooking.dto;
 
 import java.io.Serializable;
 
-public class JwtRequest implements Serializable {
+public class LoginRequestDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String username;

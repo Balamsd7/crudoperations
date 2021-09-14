@@ -1,7 +1,8 @@
 package com.balamsd7.flightbooking.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
+    //private static final Logger logger = LoggerFactory.getLogger(JwtUserDetailsService.class);
 
     @Autowired
     private RegisterService registerService;
@@ -24,9 +26,6 @@ public class JwtUserDetailsService implements UserDetailsService {
         com.balamsd7.flightbooking.model.User userDetails = registerService.getUserDetailsByUserName(username);
 
         if(userDetails!=null && userDetails.getUserName().equals(username)){
-            // pass : admin
-            // spring allows only hashed passwords = https://bcrypt-generator.com/
-            // ideally the username & hashed password should come from database
             return new User(username,userDetails.getPassword(),new ArrayList<>());
         }else {
             throw new UsernameNotFoundException("User not found : "+username);
