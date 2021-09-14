@@ -1,8 +1,10 @@
 package com.balamsd7.flightbooking.service;
  
+import com.balamsd7.flightbooking.dto.AirlineDto;
 import com.balamsd7.flightbooking.dto.FlightDto;
 import com.balamsd7.flightbooking.dto.InstrumentDto;
-import com.balamsd7.flightbooking.dto.ResponseDataDto; 
+import com.balamsd7.flightbooking.dto.ResponseDataDto;
+import com.balamsd7.flightbooking.model.Airline;
 import com.balamsd7.flightbooking.model.Flight;
 import com.balamsd7.flightbooking.model.Instrument;
 import com.balamsd7.flightbooking.repository.FlightRepository;
@@ -41,6 +43,7 @@ public class FlightService {
         flight.setFlightNumber(flightDto.getFlightNumber());
         flight.setFlightAddress(flightDto.getFlightAddress());
         flight.setCapacity(flightDto.getCapacity());
+        flight.setAirlineId(flightDto.getAirlineId());
 
 
         Instrument instrument = new Instrument();
@@ -74,12 +77,15 @@ public class FlightService {
         flightDto.setFlightName(flight.getFlightName());
         flightDto.setFlightAddress(flight.getFlightAddress());
         flightDto.setCapacity(flight.getCapacity());
+        flightDto.setAirlineId(flight.getAirlineId());
 
         InstrumentDto instrumentDto = new InstrumentDto();
         instrumentDto.setInstrumentId(flight.getInstrument().getId());
         instrumentDto.setInstrumentName(flight.getInstrument().getInstrumentName());
         instrumentDto.setInstrumentNo(flight.getInstrument().getInstrumentNumber());
         flightDto.setInstrumentDto(instrumentDto);
+
+
         return flightDto;
     }
 

@@ -7,6 +7,6 @@ public class AirlineDto {
     private  int airlineId;
     private String airlineNumber;
     private String airlineName;
-    private int contactNumber;
-    private FlightDto flightDto;
+    private long contactNumber;
+    //private FlightDto flightDto;
 }

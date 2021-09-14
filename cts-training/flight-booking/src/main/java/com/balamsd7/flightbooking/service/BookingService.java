@@ -79,7 +79,7 @@ public class BookingService {
         booking.setNoOfSeats(bookingDto.getNoOfSeats());
         booking.setMeal(bookingDto.getMeal());
         booking.setStatus("Booked");
-        booking.setSeatNos(bookingDto.getSeatNos());
+        //booking.setSeatNos(bookingDto.getSeatNos());
 
         booking.setPassengers(new LinkedHashSet<>());
 
@@ -108,7 +108,7 @@ public class BookingService {
             existingBooking.setNoOfSeats(bookingDto.getNoOfSeats());
             existingBooking.setMeal(bookingDto.getMeal());
             existingBooking.setStatus("Booked");
-            existingBooking.setSeatNos(bookingDto.getSeatNos());
+            //existingBooking.setSeatNos(bookingDto.getSeatNos());
             existingBooking.setPnrNumber(bookingDto.getPnrNumber());
             existingBooking.setPassengers(new LinkedHashSet<>());
 
@@ -167,7 +167,7 @@ public class BookingService {
         bookingDto.setEmailId(booking.getEmailId());
         bookingDto.setNoOfSeats(booking.getNoOfSeats());
         bookingDto.setMeal(booking.getMeal());
-        bookingDto.setSeatNos(booking.getSeatNos());
+        //bookingDto.setSeatNos(booking.getSeatNos());
         bookingDto.setStatus(booking.getStatus());
         bookingDto.setPnrNumber(booking.getPnrNumber());
         bookingDto.setPassengerDto(new LinkedHashSet<>());

@@ -13,7 +13,7 @@ public class BookingDto {
     private int noOfSeats;
     private String meal;
     private String status;
-    private String seatNos;
+    //private String seatNos;
     private String pnrNumber;
     private Set<PassengerDto> passengerDto;
 }

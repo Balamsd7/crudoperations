@@ -6,14 +6,14 @@ import javax.persistence.*;
 
 @Data
 @Entity
-public class AirLine {
+public class Airline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String airlineNumber;
     private String airlineName;
-    private int contactNumber;
+    private long contactNumber;
 
-    @OneToOne
-    private Flight flight;
+    /*@OneToOne
+    private Flight flight;*/
 }

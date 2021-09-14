@@ -46,4 +46,9 @@ public class RegisterService {
 
         return  user;
     }
+    public User getUserDetailsByUserName(String userName){
+        User user = userRegisterRepository.findByUserName(userName);
+        return user;
+    }
+
 }

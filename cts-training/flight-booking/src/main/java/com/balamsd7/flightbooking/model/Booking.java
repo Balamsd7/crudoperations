@@ -18,7 +18,7 @@ public class Booking {
     private String emailId;
     private int noOfSeats;
     private String meal;
-    private String seatNos;
+    //private String seatNos;
     private String status;
     private String pnrNumber = "PNR"+ UUID.randomUUID().toString();
 
