@@ -7,6 +7,7 @@ import com.balamsd7.flightbooking.dto.ResponseDataDto;
 import com.balamsd7.flightbooking.model.User;
 import com.balamsd7.flightbooking.service.JwtUserDetailsService;
 import com.balamsd7.flightbooking.service.RegisterService;
+import com.balamsd7.flightbooking.utils.APIResponseBuilder;
 import com.balamsd7.flightbooking.utils.CommonConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +18,12 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin
 @RestController
 public class JwtAuthController {
 
@@ -42,20 +45,23 @@ public class JwtAuthController {
     public ResponseEntity<ResponseDataDto> authenticateUser(@RequestBody LoginRequestDto request) throws Exception{
         ResponseDataDto responseDataDto = new ResponseDataDto();
         try {
-            authenticate(request.getUsername(), request.getPassword());
-            final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(request.getUsername());
+            authenticate(request.getUserName(), request.getPassword());
+            final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(request.getUserName());
             final String token = jwtTokenUtil.generateToken(userDetails);
             logger.info("Generated Token : " + token);
             User user = registerService.getUserDetailsByUserName(userDetails.getUsername());
             LoginResponseDto loginResponseDto = new LoginResponseDto();
             loginResponseDto.setToken(token);
             loginResponseDto.setRoleId(user.getRoleId());
+            responseDataDto.setMessage(CommonConstants.SUCCESS);
+            responseDataDto.setResult(loginResponseDto);
         }
         catch (Exception e){
             logger.error(CommonConstants.EXCEPTION_MSG, e);
             responseDataDto.setMessage(CommonConstants.FAILURE);
+            responseDataDto.setResult(null);
         }
-        return ResponseEntity.ok(responseDataDto);
+        return APIResponseBuilder.buildResponseFromDto(responseDataDto);
     }
 
     private void authenticate(String username,String password) throws Exception{

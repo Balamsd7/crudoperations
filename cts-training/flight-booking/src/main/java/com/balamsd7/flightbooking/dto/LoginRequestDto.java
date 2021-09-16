@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class LoginRequestDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String username;
+    private String userName;
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

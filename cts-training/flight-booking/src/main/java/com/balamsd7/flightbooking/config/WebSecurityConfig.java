@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 // by pass these requests from authentications
                 .authorizeRequests()
-                .antMatchers("/authenticate", "/api/v1.0/flight/airline/register")
+                .antMatchers("/login", "/api/v1.0/flight/airline/register")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -26,7 +27,10 @@ public class RegisterService {
 
         ResponseDataDto responseDataDto = new ResponseDataDto();
         try{
-            if(userRegisterRepository.existsByUsername(userRegisterRequestDto.getUserName())) {
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            String encodedPassword = bCryptPasswordEncoder.encode(userRegisterRequestDto.getPassword());
+            userRegisterRequestDto.setPassword(encodedPassword);
+            if(userRegisterRepository.existsByUserName(userRegisterRequestDto.getUserName())) {
                 responseDataDto.setMessage("Username is already taken!");
                 return responseDataDto;
             }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+@CrossOrigin
 @RequestMapping("/api/v1.0/flight/airline")
 @RestController
 public class AirlineController {
