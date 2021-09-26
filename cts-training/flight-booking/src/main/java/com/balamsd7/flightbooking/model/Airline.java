@@ -10,8 +10,9 @@ public class Airline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String airlineNumber;
+    private String airlineCode;
     private String airlineName;
+    private String airlineLocation;
     private long contactNumber;
 
     /*@OneToOne

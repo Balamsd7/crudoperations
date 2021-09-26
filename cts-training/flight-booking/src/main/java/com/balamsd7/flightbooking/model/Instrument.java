@@ -15,5 +15,8 @@ public class Instrument {
     private int id;
     private String instrumentName;
     private String instrumentNumber;
+    private int capacity;
+    private int businessClass;
+    private int nonBusinessClass;
 
 }

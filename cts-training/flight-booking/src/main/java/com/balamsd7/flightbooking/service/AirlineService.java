@@ -124,7 +124,8 @@ public class AirlineService {
     private Airline toAirlineEntity(AirlineDto airlineDto) {
         Airline airLine = new Airline();
         airLine.setAirlineName(airlineDto.getAirlineName());
-        airLine.setAirlineNumber(airlineDto.getAirlineNumber());
+        airLine.setAirlineCode(airlineDto.getAirlineCode());
+        airLine.setAirlineLocation(airlineDto.getAirlineLocation());
         airLine.setContactNumber(airlineDto.getContactNumber());
 
 /*        Flight flight = new Flight();
@@ -143,8 +144,10 @@ public class AirlineService {
 
     private  AirlineDto  toAirlineDto(Airline airLine) {
         AirlineDto airlineDto = new AirlineDto();
+        airlineDto.setAirlineId(airLine.getId());
         airlineDto.setAirlineName(airLine.getAirlineName());
-        airlineDto.setAirlineNumber(airLine.getAirlineNumber());
+        airlineDto.setAirlineCode(airLine.getAirlineCode());
+        airlineDto.setAirlineLocation(airLine.getAirlineLocation());
         airlineDto.setContactNumber(airLine.getContactNumber());
 /*
         FlightDto flightDto = new FlightDto();

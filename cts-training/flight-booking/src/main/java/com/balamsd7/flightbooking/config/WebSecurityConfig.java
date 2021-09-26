@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -48,10 +49,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
-        http.csrf().disable()
+        http.cors().and().csrf().disable()
                 // by pass these requests from authentications
                 .authorizeRequests()
-                .antMatchers("/login", "/api/v1.0/flight/airline/register")
+                .antMatchers("/login", "/api/v1.0/flight/airline/register", "/swagger-ui.html","/v2/api-docs","/swagger-resources","/swagger-resources/**","/configuration/ui","/configuration/security", "/webjars/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

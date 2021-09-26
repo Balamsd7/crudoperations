@@ -11,13 +11,15 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int airlineId;
+    private int instrumentId;
     private String flightNumber;
     private String flightName;
-    private String flightAddress;
 
     private int capacity;
+    private int businessClass;
+    private int nonBusinessClass;
 
 
-    @OneToOne(cascade=CascadeType.ALL)
-    private Instrument instrument;
+/*    @OneToOne(cascade=CascadeType.ALL)
+    private Instrument instrument;*/
 }
