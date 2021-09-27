@@ -9,7 +9,11 @@ import java.util.Set;
 public class BookingDto {
     private int bookingId;
     @NonNull
-    private String flightId;
+    private int scheduleId;
+    @NonNull
+    private int flightId;
+    @NonNull
+    private int airlineId;
     @NonNull
     private String name;
     @NonNull
@@ -20,6 +24,9 @@ public class BookingDto {
     private String status;
     //private String seatNos;
     private String pnrNumber;
+    private String airlineName;
+    private String flightName;
+    private int totalCost;
     private Set<PassengerDto> passengerDto;
     public BookingDto(){}
 

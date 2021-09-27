@@ -1,5 +1,6 @@
 package com.balamsd7.flightbooking.service;
 
+import com.balamsd7.flightbooking.dto.FlightDto;
 import com.balamsd7.flightbooking.dto.ScheduleDto;
 import com.balamsd7.flightbooking.dto.ScheduleSearchDto;
 import com.balamsd7.flightbooking.dto.ResponseDataDto;
@@ -15,6 +16,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ScheduleService {
@@ -109,8 +111,12 @@ public class ScheduleService {
         try {
             List<Schedule> scheduleList = scheduleRepository.findAll();
             if (!CollectionUtils.isEmpty(scheduleList)) {
+                List<ScheduleDto> scheduleDtoList = scheduleList
+                        .stream()
+                        .map(flight -> toScheduleDto(flight))
+                        .collect(Collectors.toList());
                 responseDataDto.setMessage(CommonConstants.SUCCESS);
-                responseDataDto.setResult(scheduleList);
+                responseDataDto.setResult(scheduleDtoList);
             } else {
                 responseDataDto.setMessage(CommonConstants.NDF);
             }
@@ -159,4 +165,25 @@ public class ScheduleService {
         schedule.setMeal(scheduleDto.getMeal());
         return schedule;
     }
+    private ScheduleDto toScheduleDto(Schedule schedule) {
+        ScheduleDto scheduleDto = new ScheduleDto();
+        scheduleDto.setScheduleId(schedule.getId());
+        scheduleDto.setAirlineId(schedule.getAirLineId());
+        scheduleDto.setFlightId(schedule.getFlightId());
+        scheduleDto.setAirlineName(schedule.getAirlineName());
+        scheduleDto.setFlightName(schedule.getFlightName());
+        scheduleDto.setFromPlace(schedule.getFromPlace());
+        scheduleDto.setToPlace(schedule.getToPlace());
+        scheduleDto.setStartDateTime(schedule.getStartDateTime());
+        scheduleDto.setEndDateTime(schedule.getEndDateTime());
+        scheduleDto.setScheduledDays(schedule.getScheduledDays());
+        scheduleDto.setInstrumentId(schedule.getInstrumentId());
+        scheduleDto.setBusinessClassSeats(schedule.getTotalBusinessClassSeats());
+        scheduleDto.setNonBusinessClassSeats(schedule.getTotalNonBusinessClassSeats());
+        scheduleDto.setTicketCost(schedule.getTicketCost());
+        scheduleDto.setNumberOfRows(schedule.getNumberOfRows());
+        scheduleDto.setMeal(schedule.getMeal());
+        return scheduleDto;
+    }
+
 }

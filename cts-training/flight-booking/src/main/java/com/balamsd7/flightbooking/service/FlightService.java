@@ -1,5 +1,6 @@
 package com.balamsd7.flightbooking.service;
 
+import com.balamsd7.flightbooking.dto.BookingDto;
 import com.balamsd7.flightbooking.dto.FlightDto;
 import com.balamsd7.flightbooking.dto.InstrumentDto;
 import com.balamsd7.flightbooking.dto.ResponseDataDto;
@@ -202,5 +203,27 @@ public class FlightService {
             responseDataDto.setMessage(CommonConstants.FAILURE);
         }
         return responseDataDto;
+    }
+
+    public ResponseDataDto getFlightByAirlineId(int airlineId) {
+        ResponseDataDto responseDataDto = new ResponseDataDto();
+        try{
+            List<Flight> flightList= flightRepository.findByAirlineId(airlineId);
+            if (!CollectionUtils.isEmpty(flightList)) {
+                List<FlightDto> flightDtoList = flightList
+                        .stream()
+                        .map(flight -> toFlightDto(flight))
+                        .collect(Collectors.toList());
+                responseDataDto.setMessage(CommonConstants.SUCCESS);
+                responseDataDto.setResult(flightDtoList);
+            } else {
+                responseDataDto.setMessage(CommonConstants.NDF);
+            }
+        }
+        catch (Exception e){
+            logger.error(CommonConstants.EXCEPTION_MSG, e);
+            responseDataDto.setMessage(CommonConstants.FAILURE);
+        }
+        return  responseDataDto;
     }
 }

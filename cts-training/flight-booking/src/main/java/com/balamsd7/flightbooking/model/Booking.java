@@ -13,7 +13,9 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String flightId;
+    private int scheduleId;
+    private int airlineId;
+    private int flightId;
     private String name;
     private String emailId;
     private int noOfSeats;
@@ -21,6 +23,9 @@ public class Booking {
     //private String seatNos;
     private String status;
     private String pnrNumber = "PNR"+ UUID.randomUUID().toString();
+    private String airlineName;
+    private String flightName;
+    private int totalCost;
 
     @OneToMany(mappedBy = "booking")
     private Set<Passenger> passengers;

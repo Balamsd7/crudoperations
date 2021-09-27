@@ -86,6 +86,7 @@ public class BookingService {
                 existingBooking.setStatus("Booked");
                 //existingBooking.setSeatNos(bookingDto.getSeatNos());
                 existingBooking.setPnrNumber(bookingDto.getPnrNumber());
+                existingBooking.setTotalCost(bookingDto.getTotalCost());
                 existingBooking.setPassengers(new LinkedHashSet<>());
 
                 bookingDto.getPassengerDto().forEach(passengerDto -> {
@@ -197,11 +198,16 @@ public class BookingService {
 
     private Booking toBookingEntity(BookingDto bookingDto) {
         Booking booking = new Booking();
+        booking.setScheduleId(bookingDto.getScheduleId());
+        booking.setAirlineId(bookingDto.getAirlineId());
         booking.setFlightId(bookingDto.getFlightId());
         booking.setName(bookingDto.getName());
         booking.setEmailId(bookingDto.getEmailId());
         booking.setNoOfSeats(bookingDto.getNoOfSeats());
         booking.setMeal(bookingDto.getMeal());
+        booking.setAirlineName(bookingDto.getAirlineName());
+        booking.setFlightName(bookingDto.getFlightName());
+        booking.setTotalCost(bookingDto.getTotalCost());
         booking.setStatus("Booked");
         //booking.setSeatNos(bookingDto.getSeatNos());
 
@@ -223,11 +229,16 @@ public class BookingService {
     private BookingDto toBookingDto(Booking booking) {
         BookingDto bookingDto = new BookingDto();
         bookingDto.setBookingId(booking.getId());
+        bookingDto.setScheduleId(booking.getScheduleId());
+        bookingDto.setAirlineId(booking.getAirlineId());
         bookingDto.setFlightId(booking.getFlightId());
         bookingDto.setName(booking.getName());
         bookingDto.setEmailId(booking.getEmailId());
         bookingDto.setNoOfSeats(booking.getNoOfSeats());
         bookingDto.setMeal(booking.getMeal());
+        bookingDto.setAirlineName(booking.getAirlineName());
+        bookingDto.setFlightName(booking.getFlightName());
+        bookingDto.setTotalCost(booking.getTotalCost());
         //bookingDto.setSeatNos(booking.getSeatNos());
         bookingDto.setStatus(booking.getStatus());
         bookingDto.setPnrNumber(booking.getPnrNumber());

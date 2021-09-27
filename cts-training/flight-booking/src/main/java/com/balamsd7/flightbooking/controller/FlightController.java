@@ -28,6 +28,10 @@ public class FlightController {
     public ResponseEntity<ResponseDataDto> getFlightById (@RequestParam("id") int flightId){
         return APIResponseBuilder.buildResponseFromDto(flightService.getFlightById(flightId));
     }
+    @GetMapping("/getFlightByAirlineId")
+    public ResponseEntity<ResponseDataDto> getFlightByAirlineId (@RequestParam("id") int airlineId){
+        return APIResponseBuilder.buildResponseFromDto(flightService.getFlightByAirlineId(airlineId));
+    }
 
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDataDto> deleteByFlightId (@RequestParam("id") int flightId){
